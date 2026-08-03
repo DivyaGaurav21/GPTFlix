@@ -7,7 +7,8 @@ const initialState = {
   nowPlayingMovie: [],
   popularTvShow: [],
   funnyMovie:[],
-  horrorMovie:[]
+  horrorMovie:[],
+  gptSearchMovie:[]
 };
 
 const movieSlice = createSlice({
@@ -35,6 +36,9 @@ const movieSlice = createSlice({
     addHorrorMovie: (state, action) => {
       state.horrorMovie = action.payload;
     },
+    addGPTSearchMovie: (state, action) => {
+      state.gptSearchMovie = action.payload;
+    },
   },
 });
 
@@ -45,7 +49,8 @@ export const {
   addNowPlayingMovie,
   addNowPopularTvShow,
   addFunnyMovie,
-  addHorrorMovie
+  addHorrorMovie,
+  addGPTSearchMovie
 } = movieSlice.actions;
 
 export default movieSlice.reducer;

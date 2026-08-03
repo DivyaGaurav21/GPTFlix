@@ -84,7 +84,7 @@ Interstellar, Inception, Arrival, The Martian, Gravity
           </button>
         </div>
 
-        <AISeaarchMovies moviesNames={moviesNames} title = {query} />
+        <AISeaarchMovies moviesNames={moviesNames} title = {query} loading={loading} />
       </div>
     </div>
   );

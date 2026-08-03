@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { options } from "./constant";
-import MovieSlider from "./reusable/MovieSlider";
 import MovieCard from "./reusable/MovieCard";
+import { useDispatch, useSelector } from "react-redux";
+import { addGPTSearchMovie } from "../utils/redux-slice/movieSlice";
+import AIShimmer from "./reusable/AIShimmer";
 
-const AISeaarchMovies = ({ moviesNames = [], title }) => {
-  const [movies, setMovies] = useState([]);
+const AISeaarchMovies = ({ moviesNames = [], title, loading }) => {
+  const dispatch = useDispatch();
+  const movies = useSelector((store) => store.movie.gptSearchMovie);
 
   const fetchMovie = async (movieName) => {
     try {
@@ -26,7 +29,7 @@ const AISeaarchMovies = ({ moviesNames = [], title }) => {
 
   useEffect(() => {
     if (!moviesNames.length) {
-      setMovies([]);
+      dispatch(addGPTSearchMovie([]));
       return;
     }
 
@@ -35,22 +38,22 @@ const AISeaarchMovies = ({ moviesNames = [], title }) => {
       const moviePromises = uniqueMovies.map(fetchMovie);
       const results = await Promise.all(moviePromises);
       const allMovies = results.flat();
-
-      setMovies(allMovies);
+      dispatch(addGPTSearchMovie(allMovies));
     };
 
     fetchAllMovies();
   }, [moviesNames]);
 
-  return (
-    <div className="px-6 py-8">
-      <h2 className="text-2xl font-bold text-white mb-6">{title}</h2>
+  if (loading) {
+    return <AIShimmer />;
+  }
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-5">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} small />
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-5 px-6 py-8">
+      {movies &&
+        movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} title={title} />
         ))}
-      </div>
     </div>
   );
 };
