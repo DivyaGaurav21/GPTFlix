@@ -14,7 +14,12 @@ export default function Footer() {
     },
     {
       heading: "More",
-      links: ["Service Status", "Manage Subscription", "Demo Link", "Divya Gaurav"],
+      links: [
+        "Service Status",
+        "Manage Subscription",
+        "Demo Link",
+        "Divya Gaurav",
+      ],
     },
   ];
 
@@ -27,15 +32,18 @@ export default function Footer() {
 
   return (
     <footer className="gptflix-footer relative overflow-hidden text-neutral-400">
-
-      <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-14 py-14">
+      <div className="max-w-6xl mx-auto px-6 py-6 xl:px-0">
         {/* Wordmark + social row */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
           <div>
-            <p className="gptflix-wordmark text-2xl sm:text-3xl text-neutral-100">
-              GPT<span className="gptflix-accent">FLIX</span>
+            <img
+              src="/logo.png"
+              alt="GPTFlix Logo"
+              className="h-16 md:h-24 cursor-pointer p-0"
+            />
+            <p className="text-xs text-neutral-600 mt-1">
+              Stop scrolling. Start watching.
             </p>
-            <p className="text-xs text-neutral-600 mt-1">Stop scrolling. Start watching.</p>
           </div>
 
           <div className="flex gap-4">
@@ -53,19 +61,28 @@ export default function Footer() {
         </div>
 
         {/* film-strip sprocket divider */}
-        <div className="sprocket-row h-3 w-full mb-10 rounded-sm" aria-hidden="true" />
+        <div
+          className="sprocket-row h-3 w-full mb-10 rounded-sm"
+          aria-hidden="true"
+        />
 
         {/* Link columns */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10 text-sm mb-12">
           {columns.map((col) => (
             <div key={col.heading}>
-              <p className="text-neutral-100 text-xs uppercase tracking-wider mb-4" style={{ letterSpacing: "0.08em" }}>
+              <p
+                className="text-neutral-100 text-xs uppercase tracking-wider mb-4"
+                style={{ letterSpacing: "0.08em" }}
+              >
                 {col.heading}
               </p>
               <ul className="space-y-3">
                 {col.links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="link-item text-neutral-500 hover:text-neutral-200 transition-colors">
+                    <a
+                      href="#"
+                      className="link-item text-neutral-500 hover:text-neutral-200 transition-colors"
+                    >
                       {link}
                     </a>
                   </li>

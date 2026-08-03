@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { ai } from "./utils/openai"; 
+import { ai } from "./utils/openai";
+import AISeaarchMovies from "./components/AISeaarchMovies";
 
 const OpenAiPage = () => {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [moviesNames, setMoviesNames] = useState([]);
 
   const handleSearch = async () => {
     if (!query.trim()) return;
@@ -38,7 +39,7 @@ Interstellar, Inception, Arrival, The Martian, Gravity
         .map((movie) => movie.trim())
         .filter(Boolean);
 
-      setMovies(movieList);
+      setMoviesNames(movieList);
     } catch (error) {
       console.log(error);
     }
@@ -56,12 +57,12 @@ Interstellar, Inception, Arrival, The Martian, Gravity
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/75"></div>
 
-      <div className="relative z-10 flex min-h-screen flex-col items-center justify-start px-5 pt-28">
-        <h1 className="mb-4 text-center text-5xl font-bold text-white">
+      <div className="relative z-10 flex min-h-screen flex-col items-center justify-start px-5 pt-16">
+        <h1 className="mb-2 text-center text-3xl font-bold text-white">
           GPTFlix AI
         </h1>
 
-        <p className="mb-4 text-center text-lg text-gray-300">
+        <p className="mb-2 text-center text-md text-gray-300">
           Discover your next favorite movie with Gemini AI
         </p>
 
@@ -83,24 +84,7 @@ Interstellar, Inception, Arrival, The Martian, Gravity
           </button>
         </div>
 
-        {movies.length > 0 && (
-          <div className="mt-5 w-full max-w-3xl rounded-md bg-black/60 p-6">
-            <h2 className="mb-4 text-xl font-semibold text-white">
-              AI Recommended Movies
-            </h2>
-
-            <div className="flex flex-wrap gap-3">
-              {movies.map((movie, index) => (
-                <span
-                  key={index}
-                  className="rounded-full bg-red-600 px-4 py-2 text-sm text-white"
-                >
-                  {movie}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
+        <AISeaarchMovies moviesNames={moviesNames} title = {query} />
       </div>
     </div>
   );
