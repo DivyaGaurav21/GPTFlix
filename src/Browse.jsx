@@ -1,17 +1,54 @@
 import React, { useState } from "react";
 import OfferBanner from "./components/small/OfferBanner";
 import Header from "./components/reusable/Header";
-import useFavoriteMovies from "./components/hooks/useFavoriteMovies";
 import FavoriteMovie from "./components/FavoriteMovie";
-import { useSelector } from "react-redux";
 import BrowseHero from "./components/reusable/BrowseHero";
 import Footer from "./components/reusable/Footer";
 import OpenAiPage from "./OpenAiPage";
+import useBrowseData from "./components/hooks/useBrowseData";
+
 
 const Browse = () => {
-  useFavoriteMovies();
-  const favoriteMovies = useSelector((store) => store.movie.favoriteMovie);
+  const {
+    nowPlayingMovies,
+    favoriteMovies,
+    upcomingMovies,
+    topRatedMovies,
+    popularTvShows,
+    funnyMovies,
+    horrorMovies,
+  } = useBrowseData();
   const [toggleAi, setToggleAi] = useState(false);
+  const movieSections = [
+    {
+      title: "Now Playing Movies",
+      movies: nowPlayingMovies,
+    },
+    {
+      title: "Top Rated Movies",
+      movies: topRatedMovies,
+    },
+    {
+      title: "Popular Movies",
+      movies: favoriteMovies,
+    },
+    {
+      title: "Popular TV Shows",
+      movies: popularTvShows,
+    },
+    {
+      title: "Comedy Movies",
+      movies: funnyMovies,
+    },
+    {
+      title: "Horror Movies",
+      movies: horrorMovies,
+    },
+    {
+      title: "Upcoming Movies",
+      movies: upcomingMovies,
+    },
+  ];
 
   return (
     <div>
@@ -35,30 +72,13 @@ const Browse = () => {
             onMoreInfo={() => {}}
           />
           <div className="bg-gradient-to-b from-black to-gptflix-black flex flex-col gap-2">
-            <FavoriteMovie
-              favoriteMovies={favoriteMovies || []}
-              title="Popular Movies"
-            />
-            <FavoriteMovie
-              favoriteMovies={favoriteMovies || []}
-              title="Popular Movies"
-            />
-            <FavoriteMovie
-              favoriteMovies={favoriteMovies || []}
-              title="Popular Movies"
-            />
-            <FavoriteMovie
-              favoriteMovies={favoriteMovies || []}
-              title="Popular Movies"
-            />
-            <FavoriteMovie
-              favoriteMovies={favoriteMovies || []}
-              title="Popular Movies"
-            />
-            <FavoriteMovie
-              favoriteMovies={favoriteMovies || []}
-              title="Popular Movies"
-            />
+            {movieSections.map(({ title, movies }) => (
+              <FavoriteMovie
+                key={title}
+                title={title}
+                favoriteMovies={movies || []}
+              />
+            ))}
           </div>
         </>
       )}
