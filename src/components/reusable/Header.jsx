@@ -44,7 +44,7 @@ const Header = ({ setToggleAi, toggleAi }) => {
           </nav>
         )}
 
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-4">
           <button
             onClick={() => setToggleAi((prev) => !prev)}
             className="group relative overflow-hidden rounded-xl p-2 font-semibold text-white"
@@ -67,7 +67,7 @@ const Header = ({ setToggleAi, toggleAi }) => {
             <div className="relative">
               <div
                 onClick={() => setShowPopup(!showPopup)}
-                className="flex cursor-pointer items-center gap-3"
+                className="flex cursor-pointer items-center gap-1"
               >
                 <img
                   src={
@@ -75,12 +75,14 @@ const Header = ({ setToggleAi, toggleAi }) => {
                     "https://ui-avatars.com/api/?name=User&background=E50914&color=fff"
                   }
                   alt="User"
-                  className="h-10 w-10 rounded-full border-2 border-white"
+                  className="h-8 w-8 rounded-full border-2 border-white"
                 />
 
-                <span className="hidden text-sm text-white md:block">
-                  {user.name}
-                </span>
+                {user?.name && (
+                  <span className="hidden text-sm text-white font-extrabold hover:text-gray-100 md:block">
+                    {user.name.split(" ")[0].toUpperCase()}
+                  </span>
+                )}
               </div>
 
               {showPopup && (

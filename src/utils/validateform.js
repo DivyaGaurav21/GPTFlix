@@ -25,7 +25,6 @@ export function validateForm(formData, isSignUp, setError) {
     err.passwordError = "Password must be at least 6 characters.";
   }
 
-  console.log(err)
   setError(err);
 
   return Object.keys(err).length === 0;

@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 
 import { auth } from "./utils/firebase";
+import Footer from "./components/reusable/Footer";
 
 const Login = () => {
   const [isSignUp, setIsSignUp] = useState(true);
@@ -99,7 +100,7 @@ const Login = () => {
       <OfferBanner />
 
       <div
-        className="relative h-[95vh] bg-cover bg-center"
+         className="relative h-[70vh] lg:h-screen bg-cover bg-center"
         style={{
           backgroundImage: "url('/bannerImg.jpg')",
         }}
@@ -203,6 +204,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };
