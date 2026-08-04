@@ -57,13 +57,13 @@ Interstellar, Inception, Arrival, The Martian, Gravity
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/75"></div>
 
-      <div className="relative z-10 flex min-h-screen flex-col items-center justify-start px-5 pt-16">
+      <div className="relative top-10 z-10 flex min-h-screen flex-col items-center justify-start px-5 pt-16">
         <h1 className="mb-2 text-center text-3xl font-bold text-white">
           GPTFlix AI
         </h1>
 
         <p className="mb-2 text-center text-md text-gray-300">
-          Discover your next favorite movie with Gemini AI
+          Find your favorite movie with Gemini AI
         </p>
 
         <div className="flex w-full max-w-3xl overflow-hidden rounded-md bg-black/70 shadow-2xl">
@@ -72,15 +72,15 @@ Interstellar, Inception, Arrival, The Martian, Gravity
             placeholder="What do you want to watch today?"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="flex-1 bg-transparent px-5 py-2 text-white outline-none placeholder:text-gray-400 border border-gray-700"
+            className="flex-1 bg-transparent px-5 py-2 text-white outline-none placeholder:text-gray-400 border border-gray-700 rounded-s-xl"
           />
 
           <button
             onClick={handleSearch}
             disabled={loading}
-            className="bg-red-600 px-8 font-semibold text-white transition hover:bg-red-700 disabled:bg-gray-500"
+            className="bg-red-600 px-2 min-w-24 font-semibold text-white transition hover:bg-red-700 disabled:bg-gray-500"
           >
-            {loading ? "Searching..." : "Search"}
+            {loading ? "loading" : "Search"}
           </button>
         </div>
 
