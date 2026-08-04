@@ -7,6 +7,7 @@ import { addUser, removeUser } from "./utils/redux-slice/userSlice";
 import { auth } from "./utils/firebase";
 import { useEffect } from "react";
 import PlayMovie from "./PlayMovie";
+import PaymentGate from "./components/PaymentGate";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,11 @@ function App() {
       path: "/browse",
       element: <Browse />,
     },
-    { path: "/play/:movieId", element: <PlayMovie /> },
+     {
+    path: "/play/:movieId",
+    element: <PaymentGate />,
+    children: [{ index: true, element: <PlayMovie /> }],
+  },
   ]);
 
   useEffect(() => {
