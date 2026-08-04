@@ -1,7 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Login";
 import Browse from "./Browse";
 import { useDispatch } from "react-redux";
@@ -9,6 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "./utils/redux-slice/userSlice";
 import { auth } from "./utils/firebase";
 import { useEffect } from "react";
+import PlayMovie from "./PlayMovie";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +20,7 @@ function App() {
       path: "/browse",
       element: <Browse />,
     },
+    { path: "/play/:movieId", element: <PlayMovie /> },
   ]);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ function App() {
             uid: user.uid,
             name: user.displayName,
             email: user.email,
-            photoURL: user.photoURL
+            photoURL: user.photoURL,
           }),
         );
         appRouter.navigate("/browse");

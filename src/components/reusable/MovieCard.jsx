@@ -1,14 +1,23 @@
 import { FaStar, FaPlay } from "react-icons/fa";
 import { IMG_CDN } from "../constant";
+import { useNavigate } from "react-router-dom";
 
 
 const MovieCard = ({ movie }) => {
-  const { title, poster_path, vote_average, release_date } = movie || {};
+  const { id ,title, poster_path, vote_average, release_date } = movie || {};
   const rating = typeof vote_average === "number" ? vote_average.toFixed(1) : "N/A";
   const year = release_date ? release_date.slice(0, 4) : null;
+  const navigate = useNavigate();
+
+  const handleMovieClick = () => {
+     navigate(`/play/${id}`);
+  };
 
   return (
-    <div className="group relative w-full cursor-pointer select-none">
+    <div 
+    className="group relative w-full cursor-pointer select-none"
+     onClick={handleMovieClick}
+    >
       {/* Poster */}
       <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl bg-neutral-900 shadow-md shadow-black/40 ring-1 ring-white/5 transition-all duration-300 ease-out group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-black/60 group-hover:ring-white/10">
         {poster_path ? (

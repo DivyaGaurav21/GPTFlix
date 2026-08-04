@@ -11,7 +11,7 @@ const OfferBanner = () => {
       <FaGift className="text-2xl text-white" />
 
       <p className="font-semibold text-white text-xs">
-        New to GPTFlix? Try 7 days for ₹0.
+        New to GPTFlix? Try ₹1 for single movie.
       </p>
 
       <button
